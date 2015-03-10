@@ -1,0 +1,338 @@
+\documentclass{beamer}
+
+\usepackage{multicol}
+\usepackage{color}
+\newcommand{\addhere}{{\color{red} Anything Else?}}
+\usepackage{url}
+
+\usetheme{Singapore}
+\AtBeginSection{\frame{\sectionpage}}
+
+\title[WG2]{Working Group 2 : Standardization, benchmarks, tool interoperability}
+\author{Giles Reger and Eugen Zalinescu}
+
+
+\begin{document}
+
+\begin{frame}
+  \titlepage
+\end{frame}
+
+\begin{frame}
+  \frametitle{Outline}
+  \tableofcontents  
+\end{frame}
+
+%%%%%%%%%%%%%%
+\section{Aim and Objectives}
+%%%%%%%%%%%%%%
+
+\begin{frame}
+\frametitle{Aim}
+\Large
+Clear the landscape of formalisms and tools proposed and built for runtime verification, to design common input formats and to establish a large class of benchmarks and challenges.
+\end{frame}
+
+\begin{frame}
+\frametitle{Objectives}
+\begin{enumerate}
+	\item Enrich the RV taxonomy identified in Working Group 1 to classify tools and problems.
+	\item Design common representation formats for inputs to monitoring tools organised in terms of the taxonomy.
+	\item Implement interfaces, using these common representation formats, to enable different RV tools to be attached to a variety of programs and systems
+	\item Create and maintain a collection of common benchmarks using the common representation formats
+	\item Coordinate a regular tool competition 
+\end{enumerate}
+\end{frame}
+
+\begin{frame}
+\frametitle{1. Enrich the taxonomy}
+\begin{itemize}
+	\item The idea is to have a taxonomy of RV techniques
+	\item This is a focus of WG1 but obviously effects this WG a lot
+	\item[]
+	\item From the perspective of this WG it is important that it allows us to separate techniques that do not easily interoperate
+	\item[]
+	\item The `enrichment' should involve input from the developers of tools and benchmarks so that the classification reflects reality
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{2. Design common representation formats}
+\begin{itemize}
+	\item Will not be a one-size-fits-all approach, many aspects vary widely. For example, but not limited to, the following:
+	\begin{itemize}
+		\item Definition of events and their data contents
+		\item Notion of time in traces
+		\item Dependence between a trace and the system that generates the trace; both for online instrumentation and trace-recording
+		\item Input formats for offline tools i.e. file format of traces
+	\end{itemize}
+	\item[]
+	\item Output will be a small family of suitable languages, following the taxonomy 
+	\begin{itemize}
+		\item Important that taxonomy reflects the varying aspects
+		\item Usability/readability concerns
+		\item Use an existing language or introduce a new one?
+		\item Explore translations between existing and selected languages
+		\item Consider theoretic expressiveness?
+	\end{itemize}
+\end{itemize}
+\end{frame}	
+
+\begin{frame}
+\frametitle{2. Design common representation formats (continue)}
+\begin{itemize}
+	\item Further considerations.... how to deal with
+	\begin{itemize}
+		\item Programming language specific concepts
+		\item Embedded specification languages (internal DSL)
+		\item Coupling with instrumentation techniques
+		\item \addhere{}
+	\end{itemize}
+	\item[]
+	\item Need to have enough formats to separate classes but not too many that there is one tool per class!
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{3. Implement interfaces}
+\begin{itemize}
+	\item Idea is to separate monitoring systems and the systems they monitor via common interfaces
+	\item[]
+	\item Currently RV tools are generally either
+	\begin{enumerate}
+		\item offline and system agnostic... but not useful for online
+		\item outline requiring events to be submitted manually
+		\item inline (online) and instrumentation-technique dependent
+	\end{enumerate}
+	\item Observations
+	\begin{itemize}
+		\item If case 1 are incremental then they can be used outline
+		\item Inline tools can typically be separated into instrumentation+outline
+	\end{itemize}
+	\item Therefore if we
+	\begin{enumerate}
+		\item Create an interface for outline monitoring
+		\item Define one (or more) programming language specific instrumentation technique(s) to use this interface
+		\item Extend monitoring techniques to instantiate this interface
+	\end{enumerate}
+	\item Then RV tools can be programming language agnostic
+\end{itemize}
+\end{frame}	
+	
+
+\begin{frame}
+\frametitle{3. Implement interfaces (continued)}	
+\begin{itemize}
+	\item There are some issues to consider when implementing interfaces
+	\begin{itemize}
+		\item Interfaces should be modulo the taxonomy
+		\item Some tools depend on language-dependent constructs internally. Should these must be captured by the interface?
+		\begin{itemize}
+			\item Identity i.e. semantic (equals) vs reference (==) in Java
+			\item Garbage collection in Java
+		\end{itemize}
+		\item Data parameters as runtime objects i.e. passing a collection object to a monitor and then calling the \texttt{size} method from inside the monitor.
+		\item \addhere{}
+	\end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{4. Collect benchmarks}
+\begin{itemize}
+	\item Idea: to collect benchmarks that can be used by the community to compare techniques and encourage/focus research
+	\item Bonus: can be used by the competition
+	\item[]
+	\item The taxonomy and common representation formats would be used
+	\item Need to also record meta-information i.e. description, references, comments
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{5. Coordinate competition}
+\begin{itemize}
+	\item Already in progress.
+	\item But still finding its feet.
+	\item Should discuss what best supports the community
+	\begin{itemize}
+		\item Promote further research
+		\item Encourage collaboration and cooperation		
+		\item Consider emerging subfields? (e.g. distributed monitoring)
+		\item Consider the usability aspect?
+		\item \addhere{}
+	\end{itemize}
+\end{itemize}
+\end{frame}
+
+%%%%%%%%%%%%%%
+\section{Current Status}
+%%%%%%%%%%%%%%
+
+\begin{frame}
+\frametitle{CSRV14}
+\begin{itemize}
+	\item First competition
+	\item Very successful
+	\item Running again this year (15)
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{CSRV14 Benchmarks}
+\begin{itemize}
+	\item Domains \begin{multicols}{2}
+	\begin{itemize}
+		\item Banking
+		\item Concurrency
+		\item Aerospace
+		\item Programming (Java API)
+		\item Databases
+		\item Networking
+		\item And others...
+	\end{itemize}
+	\end{multicols}
+	\item Languages
+	\begin{itemize}
+		\item Temporal logics: LTL, MFOTL, LTL + FO theories, LOLA
+		\item Automata based: DATEs (enriched FSAs), QEA, prm4j
+		\item Rule-based (LogFire)
+		\item JavaMOP can use LTL, ERA, FSM, CFG, SRS 
+	\end{itemize}	
+	\item Input formats
+	\begin{itemize}
+		\item Traces - organisers defined CSV, XML and JSON formats
+		\item Program instrumentation - AspectJ, Java reflection, manual
+	\end{itemize}	
+
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}
+\frametitle{CSRV14 Tools}
+\begin{itemize}
+	\item  Offline monitoring
+	\begin{itemize}
+		\item RiTHM2
+		\item Monpoly
+		\item STePr
+		\item MarQ
+	\end{itemize}
+	\item  Online monitoring of Java programs
+	\begin{itemize}
+		\item Larva
+		\item JUnitRV-MMT
+		\item JavaMOP
+		\item MarQ
+	\end{itemize}	
+	\item  Online monitoring of C programs
+	\begin{itemize}
+		\item RiTHM
+		\item E-ACSL
+		\item RTC
+	\end{itemize}	
+	\item[]
+	\item Others entered but did not make it to the evaluation stage (6 dropped out)
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{CSRV14 Benchmarks, other observations}
+\begin{itemize}
+	\item Lack of common representations made exporting properties difficult. 
+	\begin{itemize}
+		\item Commonly properties were not specified equivalently in different languages
+		\item i.e. usually a small set of corner cases are valid in one and invalid in another
+		\item No easy way to check equivalence... does it matter?
+	\end{itemize}
+	\item[]
+	\item Almost all benchmarks dealt with \emph{data} in some way
+	\begin{itemize}
+		\item Trace slicing, first-order temporal logic
+		\item Treating runtime objects as data (i.e. calling methods on them)
+	\end{itemize}
+	\item[]
+	\item Lack of clear notion of instrumentation and input formats for online monitoring meant that it was difficult to tell if the same events were being monitored
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Benchmarking in Research}
+\begin{itemize}
+	\item Very little focus on developing benchmarks
+	\item[]
+	\item The DaCapo benchmarks + some Java API properties are commonly used
+	\begin{itemize}
+		\item These are very restricted to a single domain and quite low-level
+		\item The combination of properties+programs are all quite similar in exhibited behaviour
+	\end{itemize}
+	\item[]
+	\item The recent SMock platform is a step towards better benchmarking systems. But more can be done to reflect different domains.
+	\item[]
+	\item \addhere{}
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Interoperability in Research}
+\begin{itemize}
+	\item It does not seem that this has been a key focus of any research efforts (correct if wrong)
+	\item[]
+	\item There are some unifying factors
+	\begin{itemize}
+		\item Finite-trace LTL definitions are often reused
+		\item Multiple systems now use the notion of trace-slicing
+		\item Some instrumentation techniques (AspectJ) unify systems
+		\item \addhere{}
+	\end{itemize}
+	\item[]
+	\item \addhere{}
+\end{itemize}
+\end{frame}
+
+%%%%%%%%%%%%%%
+\section{Planning}
+%%%%%%%%%%%%%%
+
+\begin{frame}
+\frametitle{Support taxonomy development}
+\begin{itemize}
+	\item Part of Working Group 1
+	\item Objectives 2 and 3 depend on this
+	\item[]
+	\item Talk to WG1 and see how we can support this
+	\item Ensure that development takes pragmatic issues into account
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Create benchmark/tool repository}
+\begin{itemize}
+	\item Can start without taxonomy... but will need to be able to extend to support this
+	\item[]
+	\item Idea: Central website that stores benchmarks and tools
+	\item What is a benchmark in this respect?
+	\begin{itemize}
+		\item Informal and formal descriptions
+		\item Traces and/or programs
+		\item ? specifications in multiple RV tools
+	\end{itemize}
+	\item[]
+	\item This year's competition is trying to create a repository of all artefacts. See here
+	\item[] \url{https://forge.imag.fr/plugins/mediawiki/wiki/crv15/index.php/Main_Page}
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Support competition}
+\begin{itemize}
+	\item Best way to support competition is to enter it
+	\item[]
+	\item Might still be possible to enter this year... but it is already well under way. Talk to the chairs. (This is at time of initial distribution; by the Malta meeting it is likely it will be too late)
+	\item[]
+	\item Consider setting up competition steering committee? permanent website (potentially same as benchmark repository)?
+	\item Discuss future iterations
+\end{itemize}
+\end{frame}
+
+\end{document} 
