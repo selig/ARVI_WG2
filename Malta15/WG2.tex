@@ -9,7 +9,7 @@
 \AtBeginSection{\frame{\sectionpage}}
 
 \title[WG2]{Working Group 2 : Standardization, benchmarks, tool interoperability}
-\author{Giles Reger and Eugen Zalinescu}
+\author{Chair: Giles Reger\\ Vice-chair: Eugen Zalinescu}
 
 
 \begin{document}
@@ -149,6 +149,21 @@ Clear the landscape of formalisms and tools proposed and built for runtime verif
 \end{frame}
 
 \begin{frame}
+\frametitle{4. Collect benchmarks (continued)}
+\begin{itemize}
+	\item The aim of this WG mentions {\bf challenges}
+	\item What does it mean for a benchmark to be challenging?
+	\begin{itemize}
+		\item Require efficient monitors? i.e. long traces, lots of data
+		\item Require responsive monitors? i.e. impose maximum per-event overhead
+		\item Require expressive languages? i.e. complex concepts
+		\item Require usable tools?
+		\item \addhere{}
+	\end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}
 \frametitle{5. Coordinate competition}
 \begin{itemize}
 	\item Already in progress.
@@ -169,16 +184,18 @@ Clear the landscape of formalisms and tools proposed and built for runtime verif
 %%%%%%%%%%%%%%
 
 \begin{frame}
-\frametitle{CSRV14}
+\frametitle{CRV14}
 \begin{itemize}
 	\item First competition
 	\item Very successful
 	\item Running again this year (15)
+	\item[]
+	\item There is an upcoming journal paper giving lots of details
 \end{itemize}
 \end{frame}
 
 \begin{frame}
-\frametitle{CSRV14 Benchmarks}
+\frametitle{CRV14 Benchmarks}
 \begin{itemize}
 	\item Domains \begin{multicols}{2}
 	\begin{itemize}
@@ -209,7 +226,7 @@ Clear the landscape of formalisms and tools proposed and built for runtime verif
 
 
 \begin{frame}
-\frametitle{CSRV14 Tools}
+\frametitle{CRV14 Tools}
 \begin{itemize}
 	\item  Offline monitoring
 	\begin{itemize}
@@ -237,11 +254,11 @@ Clear the landscape of formalisms and tools proposed and built for runtime verif
 \end{frame}
 
 \begin{frame}
-\frametitle{CSRV14 Benchmarks, other observations}
+\frametitle{CRV14 Benchmarks, other observations}
 \begin{itemize}
 	\item Lack of common representations made exporting properties difficult. 
 	\begin{itemize}
-		\item Commonly properties were not specified equivalently in different languages
+		\item  It was often the case that properties were not specified equivalently in different languages
 		\item i.e. usually a small set of corner cases are valid in one and invalid in another
 		\item No easy way to check equivalence... does it matter?
 	\end{itemize}
@@ -257,7 +274,18 @@ Clear the landscape of formalisms and tools proposed and built for runtime verif
 \end{frame}
 
 \begin{frame}
-\frametitle{Benchmarking in Research}
+\frametitle{RV tools in general}
+\begin{itemize}
+	\item There does not exist a recent survey of RV tools (correct if wrong), or even a list (beyond those entering the competition)
+	\item[]
+	\item The 2004 ``A Taxonomy and Catalog of Runtime Software-Fault Monitoring Tools'' by Delgado et al. is the only tool-focussed survey to date and is over 10 years out of date
+	\item[]
+	\item \addhere{}
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Benchmarking in RV Research}
 \begin{itemize}
 	\item Very little focus on developing benchmarks
 	\item[]
@@ -274,8 +302,10 @@ Clear the landscape of formalisms and tools proposed and built for runtime verif
 \end{frame}
 
 \begin{frame}
-\frametitle{Interoperability in Research}
+\frametitle{Interoperability in RV Research}
 \begin{itemize}
+	\item By interoperability here we mean a focus on making RV tools work together, either directly or via standardisation of inputs
+	\item[]
 	\item It does not seem that this has been a key focus of any research efforts (correct if wrong)
 	\item[]
 	\item There are some unifying factors
@@ -318,8 +348,10 @@ Clear the landscape of formalisms and tools proposed and built for runtime verif
 		\item ? specifications in multiple RV tools
 	\end{itemize}
 	\item[]
-	\item This year's competition is trying to create a repository of all artefacts. See here
-	\item[] \url{https://forge.imag.fr/plugins/mediawiki/wiki/crv15/index.php/Main_Page}
+	\item Collecting/submitting benchmarks should be independent of competition i.e. for the benefit of the whole community
+	\item Encourage input from WG3 and WG4
+	\item[]
+	\item Consider adapting benchmarks from other program verification communities?
 \end{itemize}
 \end{frame}
 
@@ -332,6 +364,23 @@ Clear the landscape of formalisms and tools proposed and built for runtime verif
 	\item[]
 	\item Consider setting up competition steering committee? permanent website (potentially same as benchmark repository)?
 	\item Discuss future iterations
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{CRV15 benchmarks}
+\begin{itemize}
+	\item This year's competition is trying to create a repository of all artefacts. See here
+	\item[] \url{https://forge.imag.fr/plugins/mediawiki/wiki/crv15/index.php/Main_Page}
+	\item[]
+	\item This year there will also be prizes for `best' benchmarks, which will hopefully involve the community
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Timeline and What's next}
+\begin{itemize}
+	\item
 \end{itemize}
 \end{frame}
 
